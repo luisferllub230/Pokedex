@@ -1,5 +1,7 @@
 
 
 exports.GetHome = (req, res, next) => {
-    res.send('Home');
+    res.render('index', {
+        title: 'Home',
+    })
 }

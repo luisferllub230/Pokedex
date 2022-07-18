@@ -18,12 +18,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars
 app.engine("hbs", expressHbs.engine({
-    layoutDir: "views/layouts/",
+    layoutDir: "view/layout",
     defaultLayout: "main-layout",
     extname: "hbs"
 }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'view'));
 
 app.use("/admin/",adminRoutes);
 app.use("/",userRoutes);
