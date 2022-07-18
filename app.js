@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars
-app.engine("hbs", expressHbs({
+app.engine("hbs", expressHbs.engine({
     layoutDir: "views/layouts/",
     defaultLayout: "main-layout",
     extname: "hbs"
