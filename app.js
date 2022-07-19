@@ -19,9 +19,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Set the public folder
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Handlebars
 app.engine("hbs", expressHbs.engine({
     layoutDir: "view/layout",
@@ -31,18 +28,12 @@ app.engine("hbs", expressHbs.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'view'));
 
+// Set the public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use("/admin/",adminRoutes);
 app.use("/",userRoutes);
 app.use("/",errorRoutes);
-
-// pokemonsT.hasOne(typesT,{
-//     foreignKey: 'id',
-//     sourceKey: 'type'
-// });
-// pokemonsT.hasOne(regionsT,{
-//     foreignKey: 'id',
-//     sourceKey: 'region'
-// });
 
 pk.pokemonsT.belongsTo(tt.typesT,{
     constraints: true,
