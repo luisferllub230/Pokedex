@@ -7,7 +7,7 @@ module.exports.pokemonsT = db.sql.define('pokemonsT', {
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
+    pokemonName: {
         type: sequelize.STRING,
         allowNull: false
     },

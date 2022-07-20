@@ -7,7 +7,7 @@ module.exports.regionsT = db.sql.define('regionsT',{
         primaryKey: true,
         autoIncrement: true
     },
-    typeName:{
+    regionName:{
         type: sequelize.STRING,
         allowNull: false
     },

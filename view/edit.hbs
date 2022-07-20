@@ -1,34 +1,81 @@
-
-
+{{!-- types --}}
+{{#if activeEditTypes}}
 <form action="/admin/edit/{{active}}" method="post">
-    <div class="container">
-        <div class="card">
+  <div class="container">
+    <div class="card">
 
-            <div class="card-header">
-                <div>
-                    <div class="card-title">
-                        <h1>{{title}}</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body">
-                
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="name">{{name}}</label>
-                        <input type="text" class="form-control" id="name" name="typeName" value="{{tm.typeName}}" required>
-                    </div>
-                </div>
-
-                <input type="hidden" name="id" value="{{tm.id}}">
-
-            </div>
-
-            <div class="card-header">
-                <button type="submit" class="btn btn-success">Edit</button>
-                <a href="/admin/typesM" class="btn btn-warning">Cancel</a>
-            </div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">
+            <h1>{{title}}</h1>
+          </div>
         </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">{{name}}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="typeName"
+              value="{{tm.typeName}}"
+              required
+            />
+          </div>
+        </div>
+
+        <input type="hidden" name="id" value="{{tm.id}}" />`
+      </div>
+      <div class="card-header">
+        <button type="submit" class="btn btn-success">Edit</button>
+        <a href="/admin/typesM" class="btn btn-warning">Cancel</a>
+      </div>
     </div>
+  </div>
 </form>
+{{/if}}
+
+{{!-- regions --}}
+{{#if activeEditRegions}}
+<form action="/admin/edit/{{active}}" method="post">
+  <div class="container">
+    <div class="card">
+
+      <div class="card-header">
+        <div>
+          <div class="card-title">
+            <h1>{{title}}</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">{{name}}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="regionName"
+              value="{{rm.regionName}}"
+              required
+            />
+          </div>
+        </div>
+
+        <input type="hidden" name="id" value="{{rm.id}}" />`
+      </div>
+      <div class="card-header">
+        <button type="submit" class="btn btn-success">Edit</button>
+        <a href="/admin/regionsM" class="btn btn-warning">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>
+{{/if}}
