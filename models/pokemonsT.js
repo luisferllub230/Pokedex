@@ -11,4 +11,8 @@ module.exports.pokemonsT = db.sql.define('pokemonsT', {
         type: sequelize.STRING,
         allowNull: false
     },
+    image: {
+        type: sequelize.STRING,
+        allowNull: false
+    }
 });

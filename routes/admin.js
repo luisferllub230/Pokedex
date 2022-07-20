@@ -3,6 +3,7 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 
 router.get("/pokemonsM", adminController.GetPokemonsM);
+router.post("/pokemonsM", adminController.PostpokemonsM);
 
 router.get("/regionsM", adminController.GetRegionsM);
 router.post("/regionsM", adminController.PostRegionsM);
