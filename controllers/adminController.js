@@ -2,8 +2,8 @@ const tpTable = require('../models/typesT');
 const pkTable = require('../models/pokemonsT');
 const rgTable = require('../models/regionsT');
 
-const listTp = [];
-const listRg = [];
+let listTp = [];
+let listRg = [];
 
 //----------------------------pokemonsM
 exports.GetPokemonsM = (req, res, next) => {
@@ -11,25 +11,25 @@ exports.GetPokemonsM = (req, res, next) => {
 
         tpTable.typesT.findAll({attributes: ['id','typeName']}).then(t=>{
             t.map(t=>listTp.push(t.dataValues))
-            container();
+        
+            rgTable.regionsT.findAll({attributes: ['id','regionName']}).then(r=>{ 
+                r.map(r=>listRg.push(r.dataValues))
+
+                const pm = p.map(p => p.dataValues);
+                res.render('./admin/pokemonsM', {
+        
+                    title: 'Pokemons',
+                    activePokemons: true,
+                    pokemonData: pm,
+                    listTp,
+                    listRg
+                });
+            }).catch(err => console.log(err));
         }).catch(err => console.log(err));
-
-        const container = () => {
-            rgTable.regionsT.findAll({attributes: ['id','regionName']}).then(r=>{
-            r.map(r=>listRg.push(r.dataValues))
-
-            const pm = p.map(p => p.dataValues);
-            res.render('./admin/pokemonsM', {
-    
-                title: 'Pokemons',
-                activePokemons: true,
-                pokemonData: pm,
-                listTp,
-                listRg
-            });
-        }).catch(err => console.log(err))}
-
     }).catch(err => console.log(err));
+
+    listRg = [];
+    listTp = [];
 }
 exports.PostpokemonsM = (req, res, next) => {
     const namePk = req.body.name;
@@ -212,4 +212,3 @@ exports.PostDelete = (req, res, next) => {
         pkTable.pokemonsT.destroy({ where: { id: id } }).then(() => res.status(200).redirect("/admin/pokemonsM")).catch(err => console.log(err));
     }
 }
-
