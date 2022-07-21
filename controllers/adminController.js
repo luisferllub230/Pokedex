@@ -33,12 +33,7 @@ exports.GetPokemonsM = (req, res, next) => {
     listTp = [];
 }
 exports.PostpokemonsM = (req, res, next) => {
-    const namePk = req.body.name;
-    const imagePk = req.body.image;
-    const typePk = req.body.types;
-    const regionPk = req.body.regions;
-
-    pkTable.pokemonsT.create({ pokemonName: namePk, image: imagePk, typesTId: typePk, regionsTId: regionPk }).then(() => res.status(200).redirect("/admin/pokemonsM")).catch(err => console.log(err));
+    pkTable.pokemonsT.create({ pokemonName: req.body.name, image: req.body.image, typesTId: req.body.types, regionsTId: req.body.regions }).then(() => res.status(200).redirect("/admin/pokemonsM")).catch(err => console.log(err));
 }
 
 //----------------------------GetRegionsM
@@ -65,9 +60,7 @@ exports.GetTypesM = (req, res, next) => {
             activeTypes: true,
             typesData: tm,
         })
-
     }).catch(err => console.log(err));
-
 }
 exports.PostTypesM = (req, res, next) => {
     tpTable.typesT.create({ typeName: req.body.typeName }).then(() => res.status(200).redirect("/admin/typesM")).catch(err => console.log(err));
@@ -75,11 +68,9 @@ exports.PostTypesM = (req, res, next) => {
 
 //----------------------------edit
 exports.GetEdit = (req, res, next) => {
-
     const id = req.params.id;
     const active = req.params.active;
 
-    //typesM
     if (active === "typesM") {
         tpTable.typesT.findOne({ where: { id: id } }).then(type => {
             const tm = type.dataValues;
@@ -92,8 +83,6 @@ exports.GetEdit = (req, res, next) => {
             });
         }).catch(err => console.log(err));
     }
-
-    //regionsM
     if (active === "regionsM") {
         rgTable.regionsT.findOne({ where: { id: id } }).then(region => {
             const rm = region.dataValues;
@@ -106,8 +95,6 @@ exports.GetEdit = (req, res, next) => {
             });
         }).catch(err => console.log(err));
     }
-
-    //pokemonsM
     if (active === "pokemonsM") {
 
         pkTable.pokemonsT.findOne({ where: { id: id } }).then(pokemon => {
@@ -130,32 +117,22 @@ exports.PostEdit = (req, res, next) => {
     const regionName = req.body.regionName;
     const id = req.body.id;
 
-    console.log(req.body.id);
-    console.log(req.body.name);
-    console.log(req.body.image);
-    console.log(req.body.types);
-    console.log(req.body.regions);
-
     if (active === "typesM") {
         tpTable.typesT.update({ typeName: typeName }, { where: { id: id } }).then(() => res.status(200).redirect("/admin/typesM")).catch(err => console.log(err));
     }
-
     if (active === "regionsM") {
         rgTable.regionsT.update({ regionName: regionName }, { where: { id: id } }).then(() => res.status(200).redirect("/admin/regionsM")).catch(err => console.log(err));
     }
-
     if (active === "pokemonsM") {
         pkTable.pokemonsT.update({ pokemonName: req.body.name, image: req.body.image, typesTId: req.body.types, regionsTId: req.body.regions }, { where: { id: id } }).then(() => res.status(200).redirect("/admin/pokemonsM")).catch(err => console.log(err));
     }
 }
-
 
 //----------------------------delete
 exports.GetDelete = (req, res, next) => {
     const id = req.params.id;
     const active = req.params.active;
 
-    //typesM
     if (active === "typesM") {
         tpTable.typesT.findOne({ where: { id: id } }).then(type => {
             const tm = type.dataValues;
@@ -168,8 +145,6 @@ exports.GetDelete = (req, res, next) => {
             });
         }).catch(err => console.log(err));
     }
-
-    //regionsM
     if (active === "regionsM") {
         rgTable.regionsT.findOne({ where: { id: id } }).then(region => {
             const rm = region.dataValues;
@@ -182,8 +157,6 @@ exports.GetDelete = (req, res, next) => {
             });
         }).catch(err => console.log(err));
     }
-
-    //pokemonsM
     if (active === "pokemonsM") {
         pkTable.pokemonsT.findOne({ where: { id: id } }).then(pokemon => {
             const pm = pokemon.dataValues;
@@ -204,11 +177,9 @@ exports.PostDelete = (req, res, next) => {
     if (active === "typesM") {
         tpTable.typesT.destroy({ where: { id: id } }).then(() => res.status(200).redirect("/admin/typesM")).catch(err => console.log(err));
     }
-
     if (active === "regionsM") {
         rgTable.regionsT.destroy({ where: { id: id } }).then(() => res.status(200).redirect("/admin/regionsM")).catch(err => console.log(err));
     }
-
     if (active === "pokemonsM") {
         pkTable.pokemonsT.destroy({ where: { id: id } }).then(() => res.status(200).redirect("/admin/pokemonsM")).catch(err => console.log(err));
     }
