@@ -1,9 +1,5 @@
 <div class="container-fluid">
 
-  <div class="row">
-    <button class="btn-success position-sticky" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Button with data-bs-target</button>
-  </div>
-
   <div class="container">
 
     <div class="row">
@@ -38,46 +34,26 @@
   </div>
 </div>
 
-<!--sideBar-->
-<div
-  class="offcanvas offcanvas-start bg-dark text-dark"
-  tabindex="-1"
-  id="offcanvasExample"
-  aria-labelledby="offcanvasExampleLabel"
->
-
+<form action="/" method="post">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="offcanvasWithBackdropLabel">
   <div class="offcanvas-header">
-    <h5
-      class="offcanvas-title text-white"
-      id="offcanvasExampleLabel"
-    >Regions</h5>
-    <button
-      type="button"
-      class="btn btn-danger"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    >Close</button>
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-
-  <div class="offcanvas-body">
-
-    <form action="" method="post">
-      <div class="row">
-
-        <button type="submit" class="btn btn-info sticky-top">SEND</button>
-
-        <div class="card col-12 mt-2">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <label for="ckeck">
-              <input class="form-check-input" type="checkbox" name="" id="" />
-              option 1
-            </label>
-          </div>
-        </div>
+    <div class="offcanvas-body">
+      {{#each regions as |rg key|}}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="{{rg.id}}" id="{{rg.regionName}}{{rg.id}}" name="inputID">
+        <label class="form-check-label" for="{{rg.regionName}}{{rg.id}}">
+          {{rg.regionName}}
+        </label>
       </div>
-    </form>
-
-  </div>
+      {{/each}}
+    </div>
+    <div class="offcanvas-footer">
+      <div class="d-grid gap-2 col-12 mx-auto">
+        <button class="btn-primary" type="submit">Button</button>
+      </div>
+    </div>
 </div>
-<!--end sideBar-->
+</form>
