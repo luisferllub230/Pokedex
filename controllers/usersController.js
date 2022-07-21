@@ -29,9 +29,6 @@ exports.PostHome = (req, res, next) => {
     const rgId = req.body.inputID? req.body.inputID : 0;
     const pkN = req.body.name? req.body.name : null;
 
-    console.log(rgId);
-    console.log(pkN);
-
     pkTable.pokemonsT.findAll({
         include: [{model: ttTable.typesT}, {model: rgTable.regionsT}],
         where: {
