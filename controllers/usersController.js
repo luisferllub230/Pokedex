@@ -25,13 +25,26 @@ exports.GetHome = (req, res, next) => {
 
 exports.PostHome = (req, res, next) => {
 
-    
+    console.log(req.body);
+    const rgId = req.body.inputID? req.body.inputID : 0;
+    const pkN = req.body.name? req.body.name : null;
+
+    console.log(rgId);
+    console.log(pkN);
+
     pkTable.pokemonsT.findAll({
         include: [{model: ttTable.typesT}, {model: rgTable.regionsT}],
         where: {
             [Op.or]: [
-                {regionsTId: req.body.inputID}
-            ]
+                {
+                    regionsTId: rgId
+                },
+                {
+                    pokemonName:{
+                        [Op.like]: pkN
+                    }
+                }
+            ],
         }
     }).then(pokemons => {
             
@@ -40,9 +53,6 @@ exports.PostHome = (req, res, next) => {
             const rg = types.map(t => t.dataValues);
             const pk = pokemons.map(pokemon => pokemon.dataValues);
 
-            console.log(req.body.inputID);
-            console.log(pk);
-    
             res.render('index', {
                 title: 'POKEDEX',
                 activeHome: true,
