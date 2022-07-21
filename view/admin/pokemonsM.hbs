@@ -30,8 +30,8 @@
                             <img src="{{pd.image}}" alt="{{pd.pokemonName}} picture" class="img-fluid">
                         </td>
                         <td>{{pd.pokemonName}}</td>
-                        <td>{{pd.typesTId}}</td>
-                        <td>{{pd.regionsTId}}</td>
+                        <td>{{pd.typesT.dataValues.typeName}}</td>
+                        <td>{{pd.regionsT.dataValues.regionName}}</td>
                         <td>
                             <a href="/admin/edit/pokemonsM/{{pd.id}}" class="btn btn-warning editClass">Edit</a>
                             <a href="/admin/delete/pokemonsM/{{pd.id}}" class="btn btn-danger">Delete</a>

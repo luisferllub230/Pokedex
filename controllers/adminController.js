@@ -7,7 +7,7 @@ let listRg = [];
 
 //----------------------------pokemonsM
 exports.GetPokemonsM = (req, res, next) => {
-    pkTable.pokemonsT.findAll().then(p => {
+    pkTable.pokemonsT.findAll({ include: [{ model: tpTable.typesT }, { model: rgTable.regionsT }]}).then(p =>{
 
         tpTable.typesT.findAll({attributes: ['id','typeName']}).then(t=>{
             t.map(t=>listTp.push(t.dataValues))
@@ -16,6 +16,7 @@ exports.GetPokemonsM = (req, res, next) => {
                 r.map(r=>listRg.push(r.dataValues))
 
                 const pm = p.map(p => p.dataValues);
+
                 res.render('./admin/pokemonsM', {
         
                     title: 'Pokemons',

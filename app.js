@@ -36,10 +36,14 @@ app.use("/",userRoutes);
 app.use("/",errorRoutes);
 
 pk.pokemonsT.belongsTo(tt.typesT,{
+    foreignKey: 'typesTId',
     constraints: true,
     onDelete: 'CASCADE',
 });
-tt.typesT.hasMany(pk.pokemonsT,{});
+tt.typesT.hasMany(pk.pokemonsT,{
+    foreignKey: 'typesTId',
+    target_key: 'id',
+});
 
 pk.pokemonsT.belongsTo(rt.regionsT,{
     constraints: true,
@@ -48,4 +52,4 @@ pk.pokemonsT.belongsTo(rt.regionsT,{
 rt.regionsT.hasMany(pk.pokemonsT,{});
 
 //launch the server
-db.sql.sync().then(()=>app.listen(process.env.port || 5500)).catch(err => console.log(err));
+db.sql.sync({}).then(()=>app.listen(process.env.port || 5500)).catch(err => console.log(err));

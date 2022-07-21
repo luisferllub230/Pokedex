@@ -1,69 +1,83 @@
-
 <div class="container-fluid">
 
+  <div class="row">
+    <button class="btn-success position-sticky" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Button with data-bs-target</button>
+  </div>
+
+  <div class="container">
+
     <div class="row">
-        <button class="btn-success position-sticky" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Button with data-bs-target</button>
-    </div>
-    {{!-- bug in the position sticky with bootstrap --}}
 
+      <div class="col-md-12">
+        <h1 class="text-center">{{{title}}}</h1>
+      </div>
 
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-12">
-                <h1 class="text-center">{{{title}}}</h1>
+      {{! show the pokemons }}
+      {{#each pokemons as |pk key|}}
+      <div class="col-12 col-md-3">
+        <div class="card border-dark mb-3">
+          <div class="card-header">
+            <h1 class="fs-4">ID: {{pk.id}}</h1>
             </div>
-            
-            <!--sideBar-->
-            <div class="offcanvas offcanvas-start bg-dark text-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title text-white" id="offcanvasExampleLabel">Regions</h5>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="offcanvas" aria-label="Close">Close</button>
-                </div>
-
-                <div class="offcanvas-body">
-
-                    <form action="" method="post">
-                            <div class="row">
-                                
-                                <button type="submit" class="btn btn-info sticky-top">SEND</button>
-
-                                <div class="card col-12 mt-2">
-                                        <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                            <label for="ckeck">
-                                                <input class="form-check-input" type="checkbox" name="" id="" />
-                                                option 1
-                                            </label>
-                                        </div>
-                                </div>
-                            </div>
-                    </form>  
-
-                </div>
-            </div>
-            <!--end sideBar-->
-
-            {{! show the pokemons }}
-            <div class="col-12 ">
-                <div class="row">
-
-                    <div class="col-12 col-md-3">
-                        <div class="card border-dark mb-3">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card
-                                title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-            </div> 
-
+          <div class="card-body">
+            <h5 class="card-title">{{pk.pokemonName}}</h5>
+            <img src="{{pk.image}}" alt="{{pk.pokemonName}}" class="card-img">
+          </div>
+          <div class="card-footer">
+            <ul>
+                <li>{{pk.typesT.dataValues.typeName}}</li>
+                <li>{{pk.regionsT.dataValues.regionName}}</li>
+            </ul>
+          </div>
         </div>
+      </div>
+      {{/each}}
+
     </div>
+
+  </div>
 </div>
+
+<!--sideBar-->
+<div
+  class="offcanvas offcanvas-start bg-dark text-dark"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+
+  <div class="offcanvas-header">
+    <h5
+      class="offcanvas-title text-white"
+      id="offcanvasExampleLabel"
+    >Regions</h5>
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    >Close</button>
+  </div>
+
+  <div class="offcanvas-body">
+
+    <form action="" method="post">
+      <div class="row">
+
+        <button type="submit" class="btn btn-info sticky-top">SEND</button>
+
+        <div class="card col-12 mt-2">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <label for="ckeck">
+              <input class="form-check-input" type="checkbox" name="" id="" />
+              option 1
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<!--end sideBar-->
