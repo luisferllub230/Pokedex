@@ -16,14 +16,17 @@ exports.GetPokemonsM = (req, res, next) => {
                 r.map(r=>listRg.push(r.dataValues))
 
                 const pm = p.map(p => p.dataValues);
+                let compotation = true;
+
+                if(listRg.length === 0 || listTp.length === 0){compotation = false }
 
                 res.render('./admin/pokemonsM', {
-        
                     title: 'Pokemons',
                     activePokemons: true,
                     pokemonData: pm,
                     listTp,
-                    listRg
+                    listRg,
+                    compotation
                 });
             }).catch(err => console.log(err));
         }).catch(err => console.log(err));
