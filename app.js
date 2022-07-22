@@ -5,6 +5,7 @@ const path = require('path');
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
 const errorRoutes = require('./routes/errors');
+const helpersHbs = require('./helpers/hbs');
 
 //import models
 const db = require('./database/db');
@@ -23,7 +24,10 @@ app.use(bodyParser.json());
 app.engine("hbs", expressHbs.engine({
     layoutDir: "view/layout",
     defaultLayout: "main-layout",
-    extname: "hbs"
+    extname: "hbs",
+    helpers: {
+        equal: helpersHbs.comparative,
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'view'));

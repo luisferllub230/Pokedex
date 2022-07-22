@@ -96,17 +96,17 @@ exports.GetEdit = (req, res, next) => {
         }).catch(err => console.log(err));
     }
     if (active === "pokemonsM") {
-        pkTable.pokemonsT.findOne({ where: { id: id } }).then(pokemon => {
-            const pm = pokemon.dataValues;
-            res.render('edit', {
-                title: 'Pokemons edit',
-                name: 'pokemons',
-                activeEditPokemons: true,
-                pm,
-                active,
-                listTp,
-                listRg
-            });
+        pkTable.pokemonsT.findOne({where: { id: id }}).then(pokemon => {
+                const pm = pokemon.dataValues;
+                res.render('edit', {
+                    title: 'Pokemons edit',
+                    name: 'pokemons',
+                    activeEditPokemons: true,
+                    pm,
+                    active,
+                    listTp,
+                    listRg
+                });
         }).catch(err => console.log(err));
     }
 }
