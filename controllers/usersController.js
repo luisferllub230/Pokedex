@@ -17,6 +17,7 @@ exports.GetHome = (req, res, next) => {
                 activeHome: true,
                 pokemons: pk,
                 regions: rg,
+                compotation: pk.length > 0,
             })
 
         }).catch(err => {});

@@ -1,3 +1,4 @@
+{{#if compotation}}
 <div class="container">
     <div class="row m-3">
         <div class="col-md-12 text-center"> 
@@ -42,6 +43,13 @@
         </div>
     </div>
 </div>
+{{else}}
+<div class="col-md-12 text-center"> 
+    <h1>Sorry, you need to create a Pokemon types or a Pokemon regions</h1>
+    <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png" alt="pokemon sad">
+</div>
+{{/if}}
+
 
 <!-- Modal -->
 <div class="modal fade" id="createPokemons" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
